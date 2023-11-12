@@ -15,7 +15,10 @@ node {
         sh "docker push sebsot/deploy"
     }
     stage('Run Image'){
-        sh "docker run --rm -p 5000:5000 deploy"
+        withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+            sh "docker login -u sebsot -p ${DOCKER_HUB_CREDENTIALS}"
+        }
+        sh "docker run --rm -p 5000:5000 sebsot/deploy"
     }
 }
     
