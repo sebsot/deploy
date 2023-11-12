@@ -9,7 +9,7 @@ node {
 
     stage('Build image') {
   
-       app = sh 'docker build -f Dockerfile -t deploy .'
+       app = sh 'docker build -f Dockerfile -t sebsot/deploy .'
     }
 
     stage('Test image') {
