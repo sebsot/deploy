@@ -9,7 +9,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("sebsot/deploy")
+       app = docker.build("deploy")
     }
 
     stage('Test image') {
