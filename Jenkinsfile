@@ -8,10 +8,9 @@ node {
     }
 
     stage('Build image') {
-        withCredentials([string(CredentialsId: 'DOCKER_HUB_CREDENTIALS', VARIABLE: 'DOCKER_HUB_CREDENTIALS')]) {
-            sh "docker login -u sebsot -p ${DOCKER_HUB_CREDENTIALS}"
-        }    
-       app = sh 'docker build -f Dockerfile -t deploy .'
+        
+        sh "docker login -u sebsot -p s428613975"
+        app = sh 'docker build -f Dockerfile -t deploy .'
     }
 
     stage('Test image') {
@@ -23,9 +22,8 @@ node {
     }
 
     stage('Push image') {
-        withCredentials([string(CredentialsId: 'DOCKER_HUB_CREDENTIALS', VARIABLE: 'DOCKER_HUB_CREDENTIALS')]) {
-            sh "docker login -u sebsot -p ${DOCKER_HUB_CREDENTIALS}"
-        }           
+
+        sh "docker login -u sebsot -p s428613975"
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             app.push("${env.BUILD_NUMBER}")
         }
