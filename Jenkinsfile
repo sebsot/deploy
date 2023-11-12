@@ -9,8 +9,8 @@ node {
     }
 
     stage('Push Docker Image') {
-        withCredentials([string(credentialsId: 'DOCKER_CREDENTIALS', variable: 'DOCKER_CREDENTIALS')]) {
-            sh "docker login -u sebsot -p ${DOCKER_CREDENTIALS}"
+        withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+            sh "docker login -u sebsot -p ${DOCKER_HUB_CREDENTIALS}"
         }
         sh "docker push sebsot/deploy"
     }
