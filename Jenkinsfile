@@ -9,7 +9,6 @@ node {
     }
 
     stage('run'){
-        sh 'docker login -u sebsot -p s428613975'
         sh 'docker run --rm -p 5000:5000 deploy'
     }
 }
