@@ -21,8 +21,9 @@ node {
     }
 
     stage('Push image') {
-
-        sh "docker login -u sebsot -p s428613975"
+        withCredentials([string(CredentialsId: 'DOCKER_HUB_CREDENTIALS, VARIABLE: 'DOCKER_HUB_CREDENTIALS')]) {
+            sh "docker login -u sebsot -p ${DOCKER_HUB_CREDENTIALS}"
+        }                
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             app.push("${env.BUILD_NUMBER}")
         }
