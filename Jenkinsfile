@@ -14,6 +14,8 @@ node {
         }
         sh "docker push sebsot/deploy"
     }
-
+    stage('Deploy App in K8S'){
+        KubernetesDeploy(configs: 'deployment.yaml', kubeconfigId: 'Kubernetes', enableConfigSubstitution: true)
+    }
 }
     
