@@ -15,7 +15,7 @@ node {
         sh "docker push sebsot/deploy"
     }
     stage('Run Image'){
-        docker run --rm -p 5000:5000 deploy
+        sh "docker run --rm -p 5000:5000 deploy"
     }
 }
     
