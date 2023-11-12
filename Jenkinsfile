@@ -7,5 +7,9 @@ node {
     stage('Build Docker Image'){
         sh "docker build -t sebsot/deploy ."
     }
+
+    stage('run'){
+        sh 'docker run --rm -p 5000:5000 -it deploy'
+    }
 }
     
