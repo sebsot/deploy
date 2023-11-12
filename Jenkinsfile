@@ -1,4 +1,4 @@
-pipeline {
+node {
     def app
 
     stage('Clone repository') {
@@ -9,7 +9,7 @@ pipeline {
 
     stage('Build image') {
   
-       app = docker.build("sebsot/deploy")
+       app = docker.build("deploy")
     }
 
     stage('Test image') {
