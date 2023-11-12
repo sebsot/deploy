@@ -8,8 +8,12 @@ node {
         sh "docker build -t sebsot/deploy ."
     }
 
-    stage('run'){
-        sh 'docker run --rm -p 5000:5000 deploy'
+    stage('Push Docker Image') {
+        withCredentials([string(credentialsId: 'DOCKER_CREDENTIALS', variable: 'DOCKER_CREDENTIALS')]) {
+            sh "docker login -u sebsot -p ${DOCKER_CREDENTIALS}"
+        }
+        sh "docker push sebsot/deploy"
     }
+}
 }
     
