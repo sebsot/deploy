@@ -1,4 +1,4 @@
-node {
+pipeline {
     def app
 
     stage('Clone repository') {
@@ -26,4 +26,5 @@ node {
             app.push("${env.BUILD_NUMBER}")
         }
     }
+}
     
