@@ -15,5 +15,4 @@ node {
         sh "docker push sebsot/deploy"
     }
 }
-}
     
