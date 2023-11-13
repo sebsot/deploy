@@ -15,7 +15,9 @@ node {
         sh "docker push sebsot/deploy"
     }
     stage('Deploy App in K8S'){
-        sh "ssh sebsot@192.168.229.129 && cd $HOME && ls"
+        sh "ssh sebsot@192.168.229.129"
+        sh "cd $HOME"
+        sh "ls"
     }
 }
     
