@@ -16,5 +16,6 @@ node {
     }
     stage('Deploy App in K8S'){
         sh "ssh sebsot@192.168.229.129 && pwd"
+    }
 }
     
