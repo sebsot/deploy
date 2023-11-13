@@ -15,7 +15,6 @@ node {
         sh "docker push sebsot/deploy"
     }
     stage('Deploy App in K8S'){
-        KubernetesDeploy(configs: 'deployment.yaml', kubeconfigId: 'Kubernetes', enableConfigSubstitution: true)
-    }
+        sh "ssh sebsot@192.168.229.129 && pwd"
 }
     
