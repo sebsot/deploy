@@ -20,12 +20,13 @@ node {
                 script {
                     // Configurar la conexión SSH
                     
-                    // Ejecutar el comando remoto con sshCommand
-                    def resultadoRemoto = sshCommand remote: [
-                        host: '192.168.229.129',
-                        user: 'sebsot',
-                        command: 'cd $HOME && ls'
-                    ]
+                        def remote = [:]
+                        remote.name = 'test'
+                        remote.host = '192.168.229.129'
+                        remote.user = 'sebsot'
+                        remote.allowAnyHosts = true
+                    
+                        sshCommand remote: remote, command: "ls -lrt"
                     // kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'
 
                     // Imprimir el resultado
