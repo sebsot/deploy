@@ -23,7 +23,8 @@ node {
                     remote.name = 'sebsot'  // Puedes cambiar 'mi-alias' por un alias significativo
                     remote.host = '192.168.229.129'
                     remote.user = 'sebsot'
-
+                    remote.allowAnyHosts = true
+                    
                     // Ejecutar comando remoto con awk
                     def resultadoRemoto = sshCommand remote: remote, command: "ls -lrt"
                     
