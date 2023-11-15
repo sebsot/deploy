@@ -17,7 +17,6 @@ node {
     */
     stage('Deploy App in K8S'){
 
-        steps {
                 script {
                     // Configurar la conexión SSH
                     def remote = [:]
@@ -33,7 +32,6 @@ node {
                     // Imprimir el resultado
                     echo "Resultado remoto:"
                     echo "${resultadoRemoto}"
-                }
             }
 
         /*
