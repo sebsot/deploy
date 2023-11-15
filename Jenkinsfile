@@ -24,6 +24,7 @@ node {
                         remote.name = 'test'
                         remote.host = '192.168.229.129'
                         remote.user = 'sebsot'
+                        remote.password = 'sebsot'
                         remote.allowAnyHosts = true
                     
                         sshCommand remote: remote, command: "ls -lrt"
