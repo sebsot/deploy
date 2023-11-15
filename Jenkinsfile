@@ -24,8 +24,8 @@ node {
 
                     // Ejecutar el comando remoto con sshCommand
                     def resultadoRemoto = sshCommand remote: [
-                        host: 192.168.229.129,
-                        user: sebsot,
+                        host: '192.168.229.129',
+                        user: 'sebsot',
                         command: comandoRemoto
                     ]
                     // kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'
