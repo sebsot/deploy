@@ -30,7 +30,7 @@ node {
                         def palabraBuscar = 'primerdeploy'
                         def resultadoRemoto = sshCommand remote: remote, command: """kubectl get services | awk '\$1 == "${palabraBuscar}" {split(\$5, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'"""
 
-                        sshCommand remote: remote, command: "kubectl port-forward --address 0.0.0.0 svc/${palabraBuscar} ${resultadoRemoto}:8080"
+                        def minikubeIp = sshCommand remote: remote, command: "minikube ip"
                     //"kubectl get services | awk '{split(\$5, array, \":\"); split(array[2], subarray, \"/\"); print subarray[1]}'"
                     
                     
