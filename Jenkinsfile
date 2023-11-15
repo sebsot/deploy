@@ -25,9 +25,9 @@ node {
                     remote.user = 'sebsot'
 
                     // Ejecutar comando remoto con awk
-                    def resultadoRemoto = sshScript remote: remote, script: '''
-                        ls
+                    def resultadoRemoto = sshCommand remote: remote, command: "ls -lrt"
                     '''
+                    // kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'
 
                     // Imprimir el resultado
                     echo "Resultado remoto:"
