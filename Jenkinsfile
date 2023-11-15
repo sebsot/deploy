@@ -22,7 +22,7 @@ node {
                     def remote = [:]
                     remote.name = 'sebsot'  // Puedes cambiar 'mi-alias' por un alias significativo
                     remote.host = '192.168.229.129'
-                    remote.user = 'tu_usuario'
+                    remote.user = 'sebsot'
 
                     // Ejecutar comando remoto con awk
                     def resultadoRemoto = sshScript remote: remote, script: '''
