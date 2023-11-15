@@ -24,14 +24,11 @@ node {
         echo "El valor actual de PUERTO es: ${env.PUERTO}"
     */
          script {
-                    // Configurar la conexión SSH
-                    def remote = [:]
-                    remote.host = '192.168.229.129'
-                    remote.user = 'sebsot'
+
 
                     // Ejecutar comandos remotos
-                    def resultadoRemoto = sshScript remote: remote, script: '''
-                        kubectl get services | awk '{split($campo, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'
+                    def resultadoRemoto = script: '''
+                        ssh sebsot@192.168.229.129 'kubectl get services | awk '{split($campo, array, ":"); split(array[2], subarray, "/"); print subarray[1]}''
                     '''
 
                     // Imprimir el resultado
