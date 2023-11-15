@@ -28,15 +28,16 @@ node {
                         remote.allowAnyHosts = true
 
                         def palabraBuscar = 'primerdeploy'
-                        def resultadoRemoto = sshCommand remote: remote, returnStatus: false, command: """kubectl get services | awk '\$1 == "${palabraBuscar}" {split(\$5, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'"""
-                    
+                        def resultadoRemoto = sshCommand remote: remote, command: """kubectl get services | awk '\$1 == "${palabraBuscar}" {split(\$5, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'"""
+
+                        sshCommand remote: remote, command: "kubectl port-forward --address 0.0.0.0 svc/${palabraBuscar} ${resultadoRemoto}:${resultadoRemoto}"
                     //"kubectl get services | awk '{split(\$5, array, \":\"); split(array[2], subarray, \"/\"); print subarray[1]}'"
                     
                     
 
                     // Imprimir el resultado
-                    echo "Resultado remoto:"
-                    echo "${resultadoRemoto}"
+                    // echo "Resultado remoto:"
+                    // echo "${resultadoRemoto}"
             }
 
         /*
