@@ -19,15 +19,15 @@ node {
 
                 script {
                     // Configurar la conexión SSH
-                    def remote = [:]
-                    remote.name = 'sebsot'  // Puedes cambiar 'mi-alias' por un alias significativo
-                    remote.host = '192.168.229.129'
-                    remote.user = 'sebsot'
-                    remote.allowAnyHosts = true
-                    
-                    // Ejecutar comando remoto con awk
-                    def resultadoRemoto = sshCommand remote: remote, command: "ls -lrt"
-                    
+
+                    def comandoRemoto = "ls"
+
+                    // Ejecutar el comando remoto con sshCommand
+                    def resultadoRemoto = sshCommand remote: [
+                        host: 192.168.229.129,
+                        user: sebsot,
+                        command: comandoRemoto
+                    ]
                     // kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'
 
                     // Imprimir el resultado
