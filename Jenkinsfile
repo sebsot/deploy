@@ -16,9 +16,29 @@ node {
     }
     */
     stage('Deploy App in K8S'){
-      
-        sh "ssh sebsot@192.168.229.129 'kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}''"
+
+        steps {
+                script {
+                    // Configurar la conexión SSH
+                    def remote = [:]
+                    remote.name = 'sebsot'  // Puedes cambiar 'mi-alias' por un alias significativo
+                    remote.host = '192.168.229.129'
+                    remote.user = 'tu_usuario'
+
+                    // Ejecutar comando remoto con awk
+                    def resultadoRemoto = sshScript remote: remote, script: '''
+                        kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'
+                    '''
+
+                    // Imprimir el resultado
+                    echo "Resultado remoto:"
+                    echo "${resultadoRemoto}"
+                }
+            }
+
         /*
+        sh "ssh sebsot@192.168.229.129 'kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}''"
+        
         environment{
             env.PUERTO = sh "ssh sebsot@192.168.229.129 'kubectl get services | awk '{split($campo, array, ":"); split(array[2], subarray, "/"); print subarray[1]}''"
         }
