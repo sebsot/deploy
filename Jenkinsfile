@@ -27,7 +27,7 @@ node {
                         remote.password = 'sebsot'
                         remote.allowAnyHosts = true
                     
-                        sshCommand remote: remote, command: "ls -lrt"
+                        def resultadoRemoto = sshCommand remote: remote, command: "ls -lrt"
                     // kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'
 
                     // Imprimir el resultado
