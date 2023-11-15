@@ -16,7 +16,7 @@ node {
     }
     */
     stage('Deploy App in K8S'){
-        sh "ssh sebsot@192.168.229.129 'cd $HOME && ls' "
+        sh "ssh sebsot@192.168.229.129 'kubectl get services | awk '{split($campo, array, ":"); split(array[2], subarray, "/"); print subarray[1]}''"
         environment{
             env.PUERTO = sh "ssh sebsot@192.168.229.129 'kubectl get services | awk '{split($campo, array, ":"); split(array[2], subarray, "/"); print subarray[1]}''"
         }
