@@ -26,7 +26,8 @@ node {
 
                     // Ejecutar comando remoto con awk
                     def resultadoRemoto = sshScript remote: remote, script: '''
-                        kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'
+                        cd $HOME && ls
+                        /*kubectl get services | awk '{split(\$3, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'*/
                     '''
 
                     // Imprimir el resultado
