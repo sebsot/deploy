@@ -20,7 +20,7 @@ node {
                 script {
                     // Configurar la conexión SSH
 
-                    def comandoRemoto = "ls"
+                    def comandoRemoto = "cd $HOME && ls"
 
                     // Ejecutar el comando remoto con sshCommand
                     def resultadoRemoto = sshCommand remote: [
