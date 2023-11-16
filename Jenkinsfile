@@ -37,7 +37,7 @@ node {
 
                     // Imprimir el resultado
                     // echo "Resultado remoto:"
-                    // echo "${resultadoRemoto}"
+                     echo "${resultadoRemoto}"
             }
 
         /*
