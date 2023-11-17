@@ -27,10 +27,12 @@ node {
                         remote.password = 'sebsot'
                         remote.allowAnyHosts = true
 
-                        def palabraBuscar = 'primerdeploy'
+                        def palabraBuscar = 'deployproyecto'
                         def resultadoRemoto = sshCommand remote: remote, command: """kubectl get services | awk '\$1 == "${palabraBuscar}" {split(\$5, array, ":"); split(array[2], subarray, "/"); print subarray[1]}'"""
 
                         def minikubeIp = sshCommand remote: remote, command: "minikube ip"
+
+                        sshCommand remote: remote, command: "minikube service ${palabraBuscar}"
                     //"kubectl get services | awk '{split(\$5, array, \":\"); split(array[2], subarray, \"/\"); print subarray[1]}'"
                     
                     
