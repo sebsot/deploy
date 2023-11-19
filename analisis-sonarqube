@@ -4,7 +4,7 @@ node{
   }
   stage('Analisis SonarQube'){
     def mvnHome = tool name: 'Maven'
-    echo mvnHome
+    echo ${mvnHome}
     dir('/ruta/del/proyecto'){
       sh 'mvn clean install sonar:sonar'
     }
