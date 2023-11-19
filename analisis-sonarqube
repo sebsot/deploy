@@ -3,7 +3,7 @@ node{
     git 'https://github.com/sebsot/deploy'
   }
   stage('Analisis SonarQube'){
-    def mvnHome = tool 'Maven'
+    def mvnHome = tool name: 'Maven'
     withSonarQubeEnv('jenkins-deploy'){
       sh "${mvnHome}/bin/mvn sonar:sonar"
     }
