@@ -2,7 +2,7 @@ node{
   stage('Github'){
     git 'https://github.com/sebsot/deploy'
   }
-  stage('Compile-package'){
+  stage('Analisis SonarQube'){
     def mvnHome = tool 'Maven'
     withSonarQubeEnv('jenkins-deploy'){
       sh "${mvnHome}/bin/mvn sonar:sonar"
