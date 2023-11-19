@@ -3,7 +3,7 @@ node{
     git 'https://github.com/sebsot/deploy'
   }
   stage('Analisis SonarQube'){
-    def mvnHome = tool name: 'Maven'
+    def mvnHome = tool name: 'Maven 5.14.0'
     echo ${mvnHome}
     dir('/ruta/del/proyecto'){
       sh 'mvn clean install sonar:sonar'
