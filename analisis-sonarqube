@@ -3,8 +3,10 @@ node{
     git 'https://github.com/sebsot/deploy'
   }
   stage('Analisis SonarQube'){
-    sh 'mvn clean install sonar:sonar'
+    dir('/ruta/del/proyecto'){
+      sh 'mvn clean install sonar:sonar'
     }
+  }
 }
 
 /*
