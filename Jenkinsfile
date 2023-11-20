@@ -10,7 +10,7 @@ node {
     stage('SonarQube Analysis') {
         
         sh "docker start sonarqube"
-        sleep(time:25, unit: "SECONDS")
+        sleep(time:60, unit: "SECONDS")
         withCredentials([string(credentialsId: 'USER_SONARQUBE', variable: 'USER_SONARQUBE'), string(credentialsId: 'PASS_SONARQUBE', variable: 'PASS_SONARQUBE')]){
             def scannerHome = tool name: 'sonarscanner'
             withSonarQubeEnv('SonarQube') {
