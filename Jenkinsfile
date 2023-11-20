@@ -1,17 +1,27 @@
 node {
     def nombre_proyecto = 'deploy'
     def url_proyecto = 'https://github.com/sebsot/deploy'
-/*    
+    
     stage('Git Clone'){
         git credentialsId: 'github_key', url: url_proyecto
     }
 
+    
+    stage('SonarQube Analysis') {
+        def scannerHome = tool name: 'sonarscanner'
+        withSonarQubeEnv('SonarQube') {
+              sh "${scannerHome}/bin/sonar-scanner"
+        }
+    }
+
+    
     stage('Build Docker Image'){
         withCredentials([string(credentialsId: 'USER_DOCKER', variable: 'USER_DOCKER')]){
             sh "docker build -t ${USER_DOCKER}/${nombre_proyecto} ."
         }
     }
 
+    
     stage('Push Docker Image') {
         withCredentials([string(credentialsId: 'USER_DOCKER', variable: 'USER_DOCKER'), string(credentialsId: 'PASS_DOCKER', variable: 'PASS_DOCKER')]) {
             sh "docker login -u ${USER_DOCKER} -p ${PASS_DOCKER}"
@@ -19,7 +29,8 @@ node {
         }
 
     }
-*/    
+
+    
     stage('Deploy WebApp en Kubernetes'){
         withCredentials([string(credentialsId: 'IP_PRODUCCION', variable: 'IP_PRODU'), string(credentialsId: 'USER_PRODUCCION', variable: 'USER_PRODU'),string(credentialsId: 'USER_DOCKER', variable: 'USER_DOCKER')]) {
 
