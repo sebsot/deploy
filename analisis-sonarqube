@@ -2,6 +2,10 @@ node{
   stage('Github'){
     git 'https://github.com/sebsot/deploy'
   }
+tools {
+        // Nombre de la herramienta configurada en Jenkins
+        sonarqube 'SonarQube Scanner'
+    }
   stage('Analisis SonarQube'){
       def scannerHome = tool 'SonarQube Scanner'
       withSonarQubeEnv('SonarQube Server') {
