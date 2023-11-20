@@ -8,6 +8,8 @@ node {
 
     
     stage('SonarQube Analysis') {
+        
+        // sh "docker run --rm -p 9000:9000 -p 9092:9092 sonarqube"  
         def scannerHome = tool name: 'sonarscanner'
         withSonarQubeEnv('SonarQube') {
               sh "${scannerHome}/bin/sonar-scanner"
