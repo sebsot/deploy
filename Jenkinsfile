@@ -27,8 +27,8 @@ node {
             
 
             sh(script: "ssh ${produccion} 'minikube start'")
-            sh(script: "ssh ${produccion} 'kubectl delete service deploy-proyecto-final'")
-            sh(script: "ssh ${produccion} 'kubectl delete deployment deploy-proyecto-final'")
+            // sh(script: "ssh ${produccion} 'kubectl delete service deploy-proyecto-final'")
+            // sh(script: "ssh ${produccion} 'kubectl delete deployment deploy-proyecto-final'")
 
 
             sh(script: "ssh ${produccion} 'kubectl create deployment deploy-proyecto-final --image=${USER_DOCKER}/${nombre_proyecto}'")
