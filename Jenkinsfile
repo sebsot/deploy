@@ -35,7 +35,7 @@ node {
             sh(script: "ssh ${produccion} 'kubectl expose deployment deploy-proyecto-final --port=5000 --type=LoadBalancer'")
             
 
-            // sleep(time:10, unit: "SECONDS")
+            sleep(time:10, unit: "SECONDS")
             sh(script: "ssh ${produccion} 'minikube service deploy-proyecto-final --url'")
 
 
