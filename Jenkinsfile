@@ -9,10 +9,12 @@ node {
     
     stage('SonarQube Analysis') {
         
-        // sh "docker run --rm -p 9000:9000 -p 9092:9092 sonarqube"  
-        def scannerHome = tool name: 'sonarscanner'
-        withSonarQubeEnv('SonarQube') {
-              sh "${scannerHome}/bin/sonar-scanner"
+        // sh "docker start sonarqube" 
+        withCredentials([string(credentialsId: 'USER_SONARQUBE', variable: 'USER_SONARQUBE'), string(credentialsId: 'PASS_SONARQUBE', variable: 'PASS_SONARQUBE')]){
+            def scannerHome = tool name: 'sonarscanner'
+            withSonarQubeEnv('SonarQube') {
+                  sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${USER_SONARQUBE} -Dsonar.password=${PASS_SONARQUBE}"
+            }
         }
     }
 
