@@ -44,6 +44,6 @@ node {
 
             // sh(script: "echo ssh -L 192.168.192.130:${puerto}:${minikubeIp}:${puerto}")
 
+        }
     }
 }
-    
