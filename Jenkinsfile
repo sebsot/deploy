@@ -3,7 +3,7 @@ node {
     def url_proyecto = 'https://github.com/sebsot/deploy'
     
     stage('Git Clone'){
-        git credentialsId: 'github_key', url: ${url_proyecto}
+        git credentialsId: 'github_key', url: url_proyecto
     }
 
     stage('Build Docker Image'){
