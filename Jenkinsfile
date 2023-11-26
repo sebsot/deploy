@@ -50,7 +50,7 @@ node {
             // sh(script: "ssh ${produccion} 'kubectl expose deployment deploy-proyecto-final --port=5000 --type=LoadBalancer'")
             
              sh(script: "scp -r Kubernetes ${produccion}:/$HOME/prueba/deploy-final")
-            def archivos = $(echo $HOME/prueba/deploy-final/Kubernetes/* | tr ' ' ',')
+            def archivos = "$(echo $HOME/prueba/deploy-final/Kubernetes/* | tr ' ' ',')"
             
             sh(script: "ssh ${produccion} 'kubectl apply -f ${archivos}'") 
             
