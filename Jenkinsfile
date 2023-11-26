@@ -48,9 +48,11 @@ node {
 
             // sh(script: "ssh ${produccion} 'kubectl create deployment deploy-proyecto-final --image=${USER_DOCKER}/${nombre_proyecto}'")
             // sh(script: "ssh ${produccion} 'kubectl expose deployment deploy-proyecto-final --port=5000 --type=LoadBalancer'")
-
+            
              sh(script: "scp -r Kubernetes ${produccion}:/$HOME/prueba/deploy-final")
-             sh(script: "ssh ${produccion} 'kubectl apply -f $HOME/prueba/deploy-final/Kubernetes/*'") 
+            def archivos = $(echo $HOME/prueba/deploy-final/Kubernetes/* | tr ' ' ',')
+            
+            sh(script: "ssh ${produccion} 'kubectl apply -f ${archivos}'") 
             
             // sleep(time:10, unit: "SECONDS")
             // sh(script: "ssh ${produccion} 'minikube service app --url'")
