@@ -53,7 +53,7 @@ node {
              // def archivos = "$(echo $HOME/prueba/deploy-final/Kubernetes/* | tr ' ' ',')"
             
             // sh(script: "ssh ${produccion} 'kubectl apply -f \$(echo $HOME/prueba/deploy-final/Kubernetes/* | tr ' ' ',')'") 
-            sh(script: "ssh ${produccion} 'kubectl apply -f app-deployment.yaml,app-service.yaml,db-claim0-persistentvolumeclaim.yaml,db-claim1-persistentvolumeclaim.yaml,db-deployment.yaml,db-service.yaml'") 
+            sh(script: "ssh ${produccion} 'kubectl apply -f $HOME/prueba/deploy-final/Kubernetes/app-deployment.yaml,$HOME/prueba/deploy-final/Kubernetes/app-service.yaml,$HOME/prueba/deploy-final/Kubernetes/db-claim0-persistentvolumeclaim.yaml,$HOME/prueba/deploy-final/Kubernetes/db-claim1-persistentvolumeclaim.yaml,$HOME/prueba/deploy-final/Kubernetes/db-deployment.yaml,$HOME/prueba/deploy-final/Kubernetes/db-service.yaml'") 
             // sleep(time:10, unit: "SECONDS")
             // sh(script: "ssh ${produccion} 'minikube service app --url'")
         
