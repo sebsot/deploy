@@ -54,14 +54,14 @@ node {
             
             // sh(script: "ssh ${produccion} 'kubectl apply -f \$(echo $HOME/prueba/deploy-final/Kubernetes/* | tr ' ' ',')'") 
             sh(script: "ssh ${produccion} 'kubectl apply -f $HOME/prueba/deploy-final/Kubernetes/app-deployment.yaml,$HOME/prueba/deploy-final/Kubernetes/app-service.yaml,$HOME/prueba/deploy-final/Kubernetes/db-claim0-persistentvolumeclaim.yaml,$HOME/prueba/deploy-final/Kubernetes/db-claim1-persistentvolumeclaim.yaml,$HOME/prueba/deploy-final/Kubernetes/db-deployment.yaml,$HOME/prueba/deploy-final/Kubernetes/db-service.yaml'") 
-            // sleep(time:10, unit: "SECONDS")
-            // sh(script: "ssh ${produccion} 'minikube service app --url'")
+            sleep(time:10, unit: "SECONDS")
+            sh(script: "ssh ${produccion} 'minikube service app --url'")
         
 
             def minikubeIp = sh(script:"ssh ${produccion} 'minikube ip'", returnStdout: true).trim()
-            def puerto = sh(script:"ssh ${produccion} 'kubectl get service deploy-proyecto-final --output='jsonpath={.spec.ports[0].nodePort}' --namespace=default'", returnStdout: true).trim()
+            def puerto = sh(script:"ssh ${produccion} 'kubectl get service app --output='jsonpath={.spec.ports[0].nodePort}' --namespace=default'", returnStdout: true).trim()
 
-            // sh(script: "echo ssh -L 192.168.192.130:${puerto}:${minikubeIp}:${puerto}")
+             sh(script: "echo ssh -L 192.168.192.130:${puerto}:${minikubeIp}:${puerto}")
 
         }
     }
