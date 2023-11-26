@@ -49,12 +49,12 @@ node {
             // sh(script: "ssh ${produccion} 'kubectl create deployment deploy-proyecto-final --image=${USER_DOCKER}/${nombre_proyecto}'")
             // sh(script: "ssh ${produccion} 'kubectl expose deployment deploy-proyecto-final --port=5000 --type=LoadBalancer'")
 
-            // sh(script: "scp ./Kubernetes ${produccion}")
-            sh(script: "ssh ${produccion} 'kubectl apply -f 
+             sh(script: "scp ./Kubernetes ${produccion}")
+            // sh(script: "ssh ${produccion} 'kubectl apply -f 
             
             // sleep(time:10, unit: "SECONDS")
             // sh(script: "ssh ${produccion} 'minikube service app --url'")
-
+        
 
             def minikubeIp = sh(script:"ssh ${produccion} 'minikube ip'", returnStdout: true).trim()
             def puerto = sh(script:"ssh ${produccion} 'kubectl get service deploy-proyecto-final --output='jsonpath={.spec.ports[0].nodePort}' --namespace=default'", returnStdout: true).trim()
