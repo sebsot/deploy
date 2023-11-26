@@ -52,8 +52,8 @@ node {
              sh(script: "scp -r Kubernetes ${produccion}:/$HOME/prueba/deploy-final")
              // def archivos = "$(echo $HOME/prueba/deploy-final/Kubernetes/* | tr ' ' ',')"
             
-            sh(script: "ssh ${produccion} 'kubectl apply -f \$(echo $HOME/prueba/deploy-final/Kubernetes/* | tr ' ' ',')'") 
-            
+            // sh(script: "ssh ${produccion} 'kubectl apply -f \$(echo $HOME/prueba/deploy-final/Kubernetes/* | tr ' ' ',')'") 
+            sh(script: "ssh ${produccion} 'kubectl apply -f app-deployment.yaml,app-service.yaml,db-claim0-persistentvolumeclaim.yaml,db-claim1-persistentvolumeclaim.yaml,db-deployment.yaml,db-service.yaml'") 
             // sleep(time:10, unit: "SECONDS")
             // sh(script: "ssh ${produccion} 'minikube service app --url'")
         
