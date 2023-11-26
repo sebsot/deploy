@@ -50,7 +50,7 @@ node {
             // sh(script: "ssh ${produccion} 'kubectl expose deployment deploy-proyecto-final --port=5000 --type=LoadBalancer'")
 
              sh(script: "scp -r Kubernetes ${produccion}:/$HOME/prueba/deploy-final")
-            // sh(script: "ssh ${produccion} 'kubectl apply -f 
+             sh(script: "ssh ${produccion} 'kubectl apply -f $HOME/prueba/deploy-final/Kubernetes/*'") 
             
             // sleep(time:10, unit: "SECONDS")
             // sh(script: "ssh ${produccion} 'minikube service app --url'")
