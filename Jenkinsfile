@@ -5,7 +5,7 @@ node {
     stage('Git Clone'){
         git credentialsId: 'github_key', url: url_proyecto
     }
-
+/*
     
     stage('SonarQube Analysis') {
         sh "docker start sonarqube"
@@ -34,24 +34,26 @@ node {
 
     }
 
-    
+*/    
     stage('Deploy WebApp en Kubernetes'){
         withCredentials([string(credentialsId: 'IP_PRODUCCION', variable: 'IP_PRODU'), string(credentialsId: 'USER_PRODUCCION', variable: 'USER_PRODU'),string(credentialsId: 'USER_DOCKER', variable: 'USER_DOCKER')]) {
 
             def produccion = "${USER_PRODU}@${IP_PRODU}"
             
 
-            sh(script: "ssh ${produccion} 'minikube start'")
-            sh(script: "ssh ${produccion} 'kubectl delete service deploy-proyecto-final'")
-            sh(script: "ssh ${produccion} 'kubectl delete deployment deploy-proyecto-final'")
+            // sh(script: "ssh ${produccion} 'minikube start'")
+            // sh(script: "ssh ${produccion} 'kubectl delete service app db'")
+            // sh(script: "ssh ${produccion} 'kubectl delete deployment app db'")
 
 
-            sh(script: "ssh ${produccion} 'kubectl create deployment deploy-proyecto-final --image=${USER_DOCKER}/${nombre_proyecto}'")
-            sh(script: "ssh ${produccion} 'kubectl expose deployment deploy-proyecto-final --port=5000 --type=LoadBalancer'")
+            // sh(script: "ssh ${produccion} 'kubectl create deployment deploy-proyecto-final --image=${USER_DOCKER}/${nombre_proyecto}'")
+            // sh(script: "ssh ${produccion} 'kubectl expose deployment deploy-proyecto-final --port=5000 --type=LoadBalancer'")
+
+            // sh(script: "scp ./Kubernetes ${produccion}")
+            sh(script: "ssh ${produccion} 'kubectl apply -f 
             
-
-            sleep(time:10, unit: "SECONDS")
-            sh(script: "ssh ${produccion} 'minikube service deploy-proyecto-final --url'")
+            // sleep(time:10, unit: "SECONDS")
+            // sh(script: "ssh ${produccion} 'minikube service app --url'")
 
 
             def minikubeIp = sh(script:"ssh ${produccion} 'minikube ip'", returnStdout: true).trim()
