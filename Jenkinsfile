@@ -49,7 +49,7 @@ node {
             // sh(script: "ssh ${produccion} 'kubectl create deployment deploy-proyecto-final --image=${USER_DOCKER}/${nombre_proyecto}'")
             // sh(script: "ssh ${produccion} 'kubectl expose deployment deploy-proyecto-final --port=5000 --type=LoadBalancer'")
 
-             sh(script: "scp ./Kubernetes ${produccion}")
+             sh(script: "scp Kubernetes ${produccion}")
             // sh(script: "ssh ${produccion} 'kubectl apply -f 
             
             // sleep(time:10, unit: "SECONDS")
