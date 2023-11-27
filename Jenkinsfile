@@ -38,7 +38,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'USER_SONARQUBE', variable: 'USER_SONARQUBE'), string(credentialsId: 'PASS_SONARQUBE', variable: 'PASS_SONARQUBE')]){
                         def scannerHome = tool name: 'sonarscanner'
                         withSonarQubeEnv('SonarQube') {
-                                sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${USER_SONARQUBE} -Dsonar.password=${PASS_SONARQUBE}"
+                                sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${USER_SONARQUBE} -Dsonar.password=${PASS_SONARQUBE} -Dsonar.projectKey=jenkins-deploy -X"
                                         }
                                 }
                         }
