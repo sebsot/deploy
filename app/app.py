@@ -9,8 +9,8 @@ pw = os.environ.get('MY_PASSWORD')
 def datos_participantes():
 
     config = {
-        'user': sys.argv[1],
-        'password': sys.argv[2],
+        'user': 'root',
+        'password': 'root',
         'host': 'db',
         'port': '3306',
         'database': 'dbproyecto'
