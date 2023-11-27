@@ -71,9 +71,9 @@ pipeline {
                     {
             
                         def produccion = "${USER_PRODU}@${IP_PRODU}"
-                        def infra =
                         sh "mkdir -p /$HOME/deploy-final"
                         sh "scp -r Kubernetes ${produccion}:/$HOME/deploy-final"
+                        sh "minikube start"
                         sh "ssh ${produccion} 'kubectl apply -f \$(printf \"%s,\" $HOME/deploy-final/*.yaml | sed \"s/,\$//\")'"
                         sleep(time:4, unit: "SECONDS")
                         sh "ssh ${produccion} 'minikube service app --url'"
