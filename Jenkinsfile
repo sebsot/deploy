@@ -21,8 +21,7 @@ pipeline {
             
                 sh "docker exec flask-app-container python tests.py"
 
-                sh "sudo rm data/*"
-                sh "sudo rmdir data"
+                sh "sudo rm -r data"
                 
                 sh "docker stop flask-app-container"
                 sh "docker stop flask-app-db-container"
@@ -37,7 +36,7 @@ pipeline {
             steps{
                 script{
                 sh "docker start sonarqube"
-                sleep(time:60, unit: "SECONDS")
+                // sleep(time:60, unit: "SECONDS")
                 withCredentials([string(credentialsId: 'USER_SONARQUBE', variable: 'USER_SONARQUBE'), string(credentialsId: 'PASS_SONARQUBE', variable: 'PASS_SONARQUBE')]){
                         def scannerHome = tool name: 'sonarscanner'
                         withSonarQubeEnv('SonarQube') {
