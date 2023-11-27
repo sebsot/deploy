@@ -107,15 +107,15 @@ pipeline {
 
 
 
-
-/* node {
+/*
+ node {
     def nombre_proyecto = 'deploy'
     def url_proyecto = 'https://github.com/sebsot/deploy'
     
     stage('Git Clone'){
         git credentialsId: 'github_key', url: url_proyecto
     }
-/*
+
     
     stage('SonarQube Analysis') {
         sh "docker start sonarqube"
@@ -144,7 +144,7 @@ pipeline {
 
     }
 
-*/    
+  
     stage('Deploy WebApp en Kubernetes'){
         withCredentials([string(credentialsId: 'IP_PRODUCCION', variable: 'IP_PRODU'), string(credentialsId: 'USER_PRODUCCION', variable: 'USER_PRODU'),string(credentialsId: 'USER_DOCKER', variable: 'USER_DOCKER')]) {
 
