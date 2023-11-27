@@ -5,18 +5,19 @@ import os
 import mysql.connector
 
 app = Flask(__name__, template_folder = 'templates')
-pw = os.environ.get('MY_PASSWORD')
+
+
+
 def datos_participantes():
+    secret_path_user = "$HOME/credenciales/user.txt"
+    secret_path_pass = "$HOME/credenciales/password.txt"
 
-secret_path_user = "$HOME/credenciales/user.txt"
-secret_path_pass = "$HOME/credenciales/password.txt"
-
-with open(secret_path_user, "r") as secret_file:
-    user = secret_file.read().strip()
+    with open(secret_path_user, "r") as secret_file:
+        user = secret_file.read().strip()
     
 
-with open(secret_path_pass, "r") as secret_file:
-    pwd = secret_file.read().strip()
+    with open(secret_path_pass, "r") as secret_file:
+        pwd = secret_file.read().strip()
     
     config = {
         'user': user,
