@@ -1,7 +1,7 @@
+def nombre_proyecto = 'deploy'
+def url_proyecto = 'https://github.com/sebsot/deploy'
+
 pipeline {
-        
-    def nombre_proyecto = 'deploy'
-    def url_proyecto = 'https://github.com/sebsot/deploy'
     
     agent any
     
