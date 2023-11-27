@@ -20,6 +20,9 @@ pipeline {
                 sleep(time:15, unit: "SECONDS")
             
                 sh "docker exec flask-app-container python tests.py"
+
+                sh "rm data/*"
+                sh "rmdir data"
                 
                 sh "docker stop flask-app-container"
                 sh "docker stop flask-app-db-container"
