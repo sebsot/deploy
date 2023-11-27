@@ -1,6 +1,3 @@
-def nombre_proyecto = 'deploy'
-def url_proyecto = 'https://github.com/sebsot/deploy'
-
 pipeline {
     
     agent any
