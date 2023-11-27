@@ -5,12 +5,12 @@ import os
 import mysql.connector
 
 app = Flask(__name__, template_folder = 'templates')
-
+pw = os.environ.get('MY_PASSWORD')
 def datos_participantes():
 
     config = {
-        'user': 'root',
-        'password': 'root',
+        'user': sys.argv[1],
+        'password': sys.argv[2],
         'host': 'db',
         'port': '3306',
         'database': 'dbproyecto'
