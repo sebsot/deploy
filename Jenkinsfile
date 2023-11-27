@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Git Clone'){
             steps {
-                git credentialsId: 'github_key', url: 'https://github.com/sebsot/deploy'
+                git credentialsId: 'github_key', url: 'https://github.com/GerLechner/deploy-final/'
             }
         }
     
