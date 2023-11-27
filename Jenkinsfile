@@ -17,7 +17,7 @@ pipeline {
             steps {
                 
                 sh "docker-compose up -d --build"
-                sleep(time:5, unit: "SECONDS")
+                sleep(time:15, unit: "SECONDS")
             
                 sh "docker exec flask-app-container python tests.py"
                 
