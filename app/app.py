@@ -9,6 +9,7 @@ app = Flask(__name__, template_folder = 'templates')
 
 
 def datos_participantes():
+"""
     secret_path_user = "$HOME/credenciales/user.txt"
     secret_path_pass = "$HOME/credenciales/password.txt"
 
@@ -18,10 +19,10 @@ def datos_participantes():
 
     with open(secret_path_pass, "r") as secret_file:
         pwd = secret_file.read().strip()
-    
+""" 
     config = {
-        'user': user,
-        'password': pwd,
+        'user': 'root',
+        'password': 'root',
         'host': 'db',
         'port': '3306',
         'database': 'dbproyecto'
