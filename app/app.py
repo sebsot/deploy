@@ -6,8 +6,6 @@ import mysql.connector
 
 app = Flask(__name__, template_folder = 'templates')
 
-
-
 def datos_participantes():
 
     config = {
