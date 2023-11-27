@@ -21,8 +21,8 @@ pipeline {
             
                 sh "docker exec flask-app-container python tests.py"
 
-                sh "rm data/*"
-                sh "rmdir data"
+                sh "sudo rm data/*"
+                sh "sudo rmdir data"
                 
                 sh "docker stop flask-app-container"
                 sh "docker stop flask-app-db-container"
