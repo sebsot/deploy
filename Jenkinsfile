@@ -35,15 +35,17 @@ pipeline {
         
         stage('SonarQube Analysis') {
             steps{
+                script{
                 sh "docker start sonarqube"
                 sleep(time:60, unit: "SECONDS")
                 withCredentials([string(credentialsId: 'USER_SONARQUBE', variable: 'USER_SONARQUBE'), string(credentialsId: 'PASS_SONARQUBE', variable: 'PASS_SONARQUBE')]){
-                    def scannerHome = tool name: 'sonarscanner'
-                    withSonarQubeEnv('SonarQube') {
-                            sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${USER_SONARQUBE} -Dsonar.password=${PASS_SONARQUBE}"
-                    }
+                        def scannerHome = tool name: 'sonarscanner'
+                        withSonarQubeEnv('SonarQube') {
+                                sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${USER_SONARQUBE} -Dsonar.password=${PASS_SONARQUBE}"
+                                        }
+                                }
+                        }
                 }
-            }
         }
         stage('Build Docker Image'){
             steps {
